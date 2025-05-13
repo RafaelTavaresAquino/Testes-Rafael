@@ -1,13 +1,21 @@
 describe('template spec', () => {
   it('passes', () => {
 
+    //Variáveis
+
     var nome = 'Rafael Testes'
     var sobrenome = 'Da Silva'
     var nomecompania = 'XPTO'
     var email = 'rafaeltestes@testes.com.br'
     const senha = '123456789'
     const tamanho = 'small'  //Opções Disponiveis ( small , medium , learz e xl )
-
+    var pais = 'Afghanistan'  //Opções Disponíveis ( usa , Afghanistan)
+    var cidade = 'Aland Islands' //Opções Disponíveis ( Aland Islands , Afghanistan)
+    const cep = '12345678'
+    var observacao = 'Escreva Qualquer Coisa Aqui'
+    var tipo = '#javascript' // Opções Disponíveis ( '#html' , '#javascript' , '#css')
+    var endereco = 'Rua XPTO'
+ 
 
 
     //resolução do teste
@@ -64,21 +72,31 @@ describe('template spec', () => {
         cy.get('.offcanvas-cart-action-button > :nth-child(2) > .theme-btn-one').click()
 
         //Informando dados de Pagamento
-
         cy.get('#fname').click().type(nome)
         cy.get('#lname').click().type(sobrenome)
         cy.get('#cname').click().type(nomecompania)
         cy.get('#email').click().type(email)
 
+        //informando País
+        cy.get('#country').select(pais)
 
+        //Informando State/City
+        cy.get('#city').select(cidade)
 
+        //Informando CEP
+        cy.get('#zip').click().type(cep)
 
+        //informando Endereço
+        cy.get('#faddress').click().type(endereco)
 
+        //Observações
+        cy.get('#messages').click().type(observacao)
 
+        //Tipo de Pagamento
+        cy.get(tipo).click()
 
-
-
-
+        //Finalizando a compra
+        cy.get(':nth-child(2) > :nth-child(2) > .theme-btn-one').click()
 
 
       })
