@@ -40,7 +40,7 @@ describe('template spec', () => {
     cy.get('.swal2-container').screenshot('06 - Adicionado com Sucesso')
 
 
-    //Teste
+    //Teste2
 
 
   })
