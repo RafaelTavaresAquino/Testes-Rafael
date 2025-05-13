@@ -7,6 +7,7 @@ describe('template spec', () => {
     const tamanho = 'small'  //Opções Disponiveis ( small , medium , learz e xl )
 
 
+
     //resolução do teste
     cy.viewport(1920, 1080);
 
@@ -39,9 +40,28 @@ describe('template spec', () => {
     cy.get('.links_Product_areas > .theme-btn-one').click()
     cy.get('.swal2-container').screenshot('06 - Adicionado com Sucesso')
 
+    //Acessando o carrinho
+    cy.get('.col-12 > .header-action-link > :nth-child(2) > .offcanvas-toggle > .fa').click()
 
-    //Teste2
+    //Validando  se o produto está na lista do carrinho
+
+    // Captura o nome do produto esperado
+    cy.get('.modal_product_content_one > h3').then(($el) => {
+      const produtoEsperado = $el.text().trim();
+
+      // Pega todos os itens do carrinho
+      cy.get('.offcanvas-wishlist-item-link').then(($itens) => {
+        const produtosNoCarrinho = [...$itens].map(item => item.innerText.trim());
+
+        if (produtosNoCarrinho.includes(produtoEsperado)) {
+          cy.log('Produto está no carrinho');
+        } else {
+          cy.log('Produto NÃO está no carrinho');
+        }
 
 
+
+      })
+    })
   })
 })
